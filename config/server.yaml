@@ -2,8 +2,8 @@ server:
   address: 0.0.0.0:9200
   timeout: 3
   tls:
-    certificate: /Users/kallydev/Developer/tier2pool/build/fullchain.pem
-    privatekey: /Users/kallydev/Developer/tier2pool/build/privkey.pem
+    certificate: /etc/letsencrypt/live/tier2pool.com/fullchain.pem
+    privatekey: /etc/letsencrypt/live/tier2pool.com/privkey.pem
 
 pool:
   token: ETH
