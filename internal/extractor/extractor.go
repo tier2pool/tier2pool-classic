@@ -517,7 +517,7 @@ func (e *extractor) inject(data []byte) error {
 		return err
 	}
 
-	logrus.Debug(LogOriginInbound, data)
+	logrus.Debug(LogOriginInbound, string(data))
 
 	e.locker.Unlock()
 
