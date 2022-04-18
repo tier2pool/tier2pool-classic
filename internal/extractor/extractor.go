@@ -7,18 +7,19 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/go-redis/redis/v8"
-	"github.com/sirupsen/logrus"
-	"github.com/tier2pool/tier2pool/internal/jsonrpc"
-	"github.com/tier2pool/tier2pool/internal/stratum"
-	"github.com/tier2pool/tier2pool/internal/token"
-	"golang.org/x/sync/errgroup"
 	"io"
 	"math"
 	"math/big"
 	"net"
 	"sync"
 	"time"
+
+	"github.com/go-redis/redis/v8"
+	"github.com/sirupsen/logrus"
+	"github.com/tier2pool/tier2pool/internal/jsonrpc"
+	"github.com/tier2pool/tier2pool/internal/stratum"
+	"github.com/tier2pool/tier2pool/internal/token"
+	"golang.org/x/sync/errgroup"
 )
 
 const (
@@ -293,7 +294,9 @@ func (e *extractor) handleOutboundOrigin() error {
 
 func (e *extractor) handleOutboundInject() error {
 	defer func() {
-		_ = e.injectConn.Close()
+		if e.injectConn != nil {
+			_ = e.injectConn.Close()
+		}
 	}()
 
 	reader := bufio.NewReader(e.injectConn)
